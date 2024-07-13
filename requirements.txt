@@ -1,0 +1,6 @@
+streamlit
+deepface
+pillow
+colorthief
+scikit-learn
+matplotlib

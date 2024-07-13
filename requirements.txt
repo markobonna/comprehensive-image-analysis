@@ -4,3 +4,5 @@ pillow
 colorthief
 scikit-learn
 matplotlib
+watchdog
+numpy<2

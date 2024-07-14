@@ -21,13 +21,21 @@ if uploaded_file is not None:
         # Analyze emotions using DeepFace
         st.write("Analyzing emotions...")
         result = DeepFace.analyze(np.array(image), actions=['emotion'], enforce_detection=False)
-        st.write(f"Dominant Emotion: {result['dominant_emotion']}")
-        st.write(f"Emotion Scores: {result['emotion']}")
+        
+        # Debug: Print the result to see its structure
+        st.write("Debug: Result structure")
+        st.write(result)
+
+        # Access the correct keys from the result
+        dominant_emotion = result[0]['dominant_emotion']
+        emotion_scores = result[0]['emotion']
+
+        st.write(f"Dominant Emotion: {dominant_emotion}")
+        st.write(f"Emotion Scores: {emotion_scores}")
 
         # Display emotion scores as a bar chart
-        emotions = result['emotion']
         fig, ax = plt.subplots()
-        ax.bar(emotions.keys(), emotions.values())
+        ax.bar(emotion_scores.keys(), emotion_scores.values())
         st.pyplot(fig)
 
         # Analyze colors using ColorThief
@@ -49,7 +57,7 @@ if uploaded_file is not None:
 
         # Predict popularity (for demonstration, we'll use a simple rule-based approach)
         st.write("Predicting popularity...")
-        popularity_score = (result['emotion']['happy'] * 0.4 + result['emotion']['neutral'] * 0.3) * (1 - np.mean([np.abs(c[0]-128)/128 for c in palette]))
+        popularity_score = (emotion_scores['happy'] * 0.4 + emotion_scores['neutral'] * 0.3) * (1 - np.mean([np.abs(c[0]-128)/128 for c in palette]))
         st.write(f"Predicted Popularity Score: {popularity_score:.2f} (Higher is better)")
 
     except Exception as e:

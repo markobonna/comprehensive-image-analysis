@@ -22,10 +22,6 @@ if uploaded_file is not None:
         st.write("Analyzing emotions...")
         result = DeepFace.analyze(np.array(image), actions=['emotion'], enforce_detection=False)
         
-        # Debug: Print the result to see its structure
-        st.write("Debug: Result structure")
-        st.write(result)
-
         # Access the correct keys from the result
         dominant_emotion = result[0]['dominant_emotion']
         emotion_scores = result[0]['emotion']

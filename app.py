@@ -5,7 +5,7 @@ from colorthief import ColorThief
 import matplotlib.pyplot as plt
 import numpy as np
 
-st.title("Comprehensive Image Analysis Web App")
+st.title("Comprehensive Image Analysis App")
 
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
 

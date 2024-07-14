@@ -6,3 +6,4 @@ scikit-learn
 matplotlib
 watchdog
 numpy<2
+tf-keras
